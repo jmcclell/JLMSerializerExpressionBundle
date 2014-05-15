@@ -2,6 +2,7 @@ framework:
   secret: mysecret
   test: ~
   router: { resource: "%kernel.root_dir%/config/routing.yml" }
+  templating: { engines: ['php'] }
 services:
     session_storage:
         class: Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage
@@ -18,3 +19,7 @@ security:
     memory_provider:
       memory:
         users: ~
+fos_rest:
+  service:
+    view_handler: jlm_serializer_expression.fos_rest_view_handler
+

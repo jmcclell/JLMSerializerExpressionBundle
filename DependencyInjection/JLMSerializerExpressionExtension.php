@@ -5,8 +5,8 @@ namespace JLM\SerializerExpressionBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-use Symfony\Compoent\DependencyInjection\Definition;
-use Symfony\Compoent\DependencyInjection\Reference;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 /**
@@ -40,7 +40,7 @@ class JLMSerializerExpressionExtension extends Extension
 
     private function determineFOSRestIntegration(ContainerBuilder $container)
     {
-        if (class_exists('\FOS\RestBundle\View')) {
+        if (class_exists('FOS\RestBundle\FOSRestBundle')) {
             $container->setDefinition('jlm_serializer_expression.fos_rest_view_handler',
                 new Definition('JLM\SerializerExpressionBundle\View\ViewHandler',
                 array(new Reference('jlm_serializer_expression.expression_based_exclusion_strategy'))));

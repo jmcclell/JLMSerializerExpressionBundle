@@ -13,7 +13,9 @@ class AppKernel extends Kernel
         return array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new JLM\SerializerExpressionBundle\JLMSerializerExpressionBundle()
+            new JLM\SerializerExpressionBundle\JLMSerializerExpressionBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle()
         );
     }
 
