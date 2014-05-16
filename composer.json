@@ -23,7 +23,9 @@
         "symfony/browser-kit": "~2.4",
         "jms/serializer-bundle": "~0.13",
         "symfony/twig-bundle": "~2.4",
-        "sensio/framework-extra-bundle": "~3.0"
+        "sensio/framework-extra-bundle": "~3.0",
+        "phpunit/phpunit": "4.1.*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "suggest": {
         "friendsofsymfony/rest-bundle": "~1.3"

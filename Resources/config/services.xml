@@ -24,7 +24,7 @@
         <!-- Currently only supporting annotations. If we wish to add XML, YAML, etc. we should use
              a Chain driver. See JMSSerializerBundle's services.xml configuration for example -->
         <service id="jlm_serializer_expression.metadata.metadata_driver"
-            alias="jlm_serializer_expression.metadata.annotation_driver" public="false"/>
+            alias="jlm_serializer_expression.metadata.annotation_driver"/>
 
         <service id="jlm_serializer_expression.metadata.cache.file_cache"
             class="%jlm_serializer_expression.metadata.cache.file_cache.class%" public="false">
@@ -45,7 +45,7 @@
         </service>
 
         <!-- Default Symfony Relevant Expression Language -->
-        <service id="jlm_serializer_expression.expression_language.expression_language"
+        <service id="jlm_serializer_expression.expression_language"
             class="%jlm_serializer_expression.expression_language.class%">
             <argument type="service" id="service_container" />
         </service>
@@ -54,7 +54,7 @@
         <service id="jlm_serializer_expression.expression_based_exclusion_strategy"
             class="%jlm_serializer_expression.expression_based_exclusion_strategy.class%">
             <argument type="service" id="jlm_serializer_expression.metadata.metadata_factory" />
-            <argument type="service" id="jlm_serializer_expression.expression_language.expression_language" />
+            <argument type="service" id="jlm_serializer_expression.expression_language" />
         </service>
     </services>
 </container>
