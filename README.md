@@ -50,14 +50,13 @@ This bundle currently has no configuration exposed. It will work out of the box.
 The bundle will provide the following pre-configured services.
 
 ### jlm_serializer_expression.expression_based_exclusion_strategy
-This is the bundled, pre-configured exclusion strategy that will run expressions provided by `@excludeIf` annotations to determine at runtime whether or not to include a particular object property.
+This is the bundled, pre-configured exclusion strategy that will run expressions provided by `@excludeIf` annotations to determine at runtime whether or not to include a particular object property. **This is likely the only service you will need**.
+
 ### jlm_serializer_expression.metadata.metadata_factory
 This service is an instance of  `Metadata\MetadataFactory` from Johannes Schmitt's [Metadata](http://github.com/schmittjoh/Metadata) library. This factory comes preconfigured with an Annotation driver to read the `excludeIf` annotations and a file based cache using your Symfony application's kernel cache directory. If you choose to instantiate a separate instance of `JLM\SerializerExpression\Exclusion\ExpressionBasedExclusionStrategy` this is the metadata factory you should pass along to it unless you have a good reason for using another.
 
 ### jlm_serializer_expression.expression_language
-This is the bundled expression language (instance of `Symfony\Component\ExpressionLanguage\ExpressionLanguage` which provides access to all services, containers, and includes a `secure` method for directly passing security expressions. This is the language used by the `@excludeIf` annotation and is the language that the pre-configured exclusion strategy is passed. **For more information on the expression language, see the* [relevant Symfony documentation](http://symfony.com/doc/current/components/expression_language/index.html).
-
-
+This is the bundled expression language (instance of `Symfony\Component\ExpressionLanguage\ExpressionLanguage` which provides access to all services, containers, and includes a `secure` method for directly passing security expressions. This is the language used by the `@excludeIf` annotation and is the language that the pre-configured exclusion strategy is passed. **For more information on the expression language, see the** [relevant Symfony documentation](http://symfony.com/doc/current/components/expression_language/index.html).
 
 # Usage
 
