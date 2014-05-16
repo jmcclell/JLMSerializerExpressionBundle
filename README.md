@@ -2,12 +2,10 @@
 
 # Status Badges (for master)
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jmcclell/jlmawsbundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Build Status](https://travis-ci.org/jmcclell/JLMAwsBundle.png?branch=master)](https://travis-ci.org/jmcclell/JLMAwsBundle)
-[![Coverage Status](https://coveralls.io/repos/jmcclell/JLMAwsBundle/badge.png?branch=master)](https://coveralls.io/r/jmcclell/JLMAwsBundle?branch=master)
-[![Stories in Ready](https://badge.waffle.io/jmcclell/JLMAwsBundle.png?label=ready)](https://waffle.io/jmcclell/JLMAwsBundle)
-[![Total Downloads](https://poser.pugx.org/jlm/aws-bundle/downloads.png)](https://packagist.org/packages/jlm/aws-bundle)
-[![Latest Stable Version](https://poser.pugx.org/jlm/aws-bundle/v/stable.png)](https://packagist.org/packages/jlm/aws-bundle)
+[![Coverage Status](https://coveralls.io/repos/jmcclell/JLMSerializerExpressionBundle/badge.png?branch=master)](https://coveralls.io/r/jmcclell/JLMSerializerExpressionBundle?branch=master)
+[![Total Downloads](https://poser.pugx.org/jlm/serializer-expression-bundle/downloads.png)](https://packagist.org/packages/jlm/serializer-expression-bundle)
+[![Latest Stable Version](https://poser.pugx.org/jlm/serializer-expression-bundle/v/stable.png)](https://packagist.org/packages/jlm/serializer-expression-bundle)
 
 #JLMSerializerExpressionBundle
 
