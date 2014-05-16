@@ -35,15 +35,13 @@ class JLMSerializerExpressionExtension extends Extension
 
         $config = $this->processConfiguration(new Configuration(), $configs);
 
-        $this->determineFOSRestIntegration($container);
+        $this->determineFOSRestIntegration($container, $loader);
     }
 
-    private function determineFOSRestIntegration(ContainerBuilder $container)
+    private function determineFOSRestIntegration(ContainerBuilder $container, $loader)
     {
         if (class_exists('FOS\RestBundle\FOSRestBundle')) {
-            $container->setDefinition('jlm_serializer_expression.fos_rest_view_handler',
-                new Definition('JLM\SerializerExpressionBundle\View\ViewHandler',
-                array(new Reference('jlm_serializer_expression.expression_based_exclusion_strategy'))));
+            $loader->load('fos_rest_services.xml');
         }
     }
 }

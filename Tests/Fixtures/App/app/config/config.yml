@@ -1,0 +1,47 @@
+framework:
+  secret: mysecret
+  test: ~
+  templating: { engines: ['php'] }
+  router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+services:
+    session_storage:
+        class: Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage
+    session:
+        class: Symfony\Component\HttpFoundation\Session\Session
+        arguments: ["@session_storage"]
+        
+security:
+  role_hierarchy:
+    ROLE_ADMIN: [ROLE_USER]
+  firewalls:
+    secured_area:
+      pattern: ^/
+      anonymous: ~
+      http_basic:
+        realm: "Secured Demo Area"
+  providers:
+    memory_provider:
+      memory:
+        users:
+          user: { password: password, roles: 'ROLE_USER' }
+          admin: { password: password, roles: 'ROLE_ADMIN' }
+  encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+fos_rest:
+  service:
+    view_handler: jlm_serializer_expression.fos_rest_view_handler
+  view:
+    default_engine: twig
+    view_response_listener: true  
+  format_listener:
+        rules:
+            -
+                prefer_extension:     true
+                fallback_format:      json
+        media_type:
+
+sensio_framework_extra:
+    view:    { annotations: false }
+
+

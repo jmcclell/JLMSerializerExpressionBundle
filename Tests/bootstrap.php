@@ -7,6 +7,9 @@ if (file_exists(__DIR__.'/../vendor/autoload.php')) {
     
     AnnotationRegistry::registerLoader('class_exists');
 
+    // add our test bundle
+    $loader->add('TestBundle', __DIR__ . '/Fixtures/App/src/');
+
     return $loader;
 }
 

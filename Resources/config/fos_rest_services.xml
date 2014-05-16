@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="jlm_serializer_expression.fos_rest_view_handler" class="JLM\SerializerExpressionBundle\View\ViewHandler" public="false">
+            <argument type="service" id="jlm_serializer_expression.expression_based_exclusion_strategy"/>
+            <argument>%fos_rest.formats%</argument>
+            <argument>%fos_rest.failed_validation%</argument>
+            <argument>%fos_rest.empty_content%</argument>
+            <argument>%fos_rest.serialize_null%</argument>
+            <argument>%fos_rest.force_redirects%</argument>
+            <argument>%fos_rest.default_engine%</argument>
+            <call method="setExclusionStrategyGroups">
+                <argument>%fos_rest.serializer.exclusion_strategy.groups%</argument>
+            </call>
+            <call method="setExclusionStrategyVersion">
+                <argument>%fos_rest.serializer.exclusion_strategy.version%</argument>
+            </call>
+            <call method="setSerializeNullStrategy">
+                <argument>%fos_rest.serializer.serialize_null%</argument>
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+    </services>
+</container>

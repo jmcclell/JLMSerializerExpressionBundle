@@ -15,7 +15,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new JLM\SerializerExpressionBundle\JLMSerializerExpressionBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle()
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Symfony\Bundle\TwigBundle\TwigBundle(),
+            new TestBundle\TestBundle()
         );
     }
 
@@ -24,7 +27,7 @@ class AppKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__ . '/Resources/config/config.yml');
+        $loader->load(__DIR__ . '/config/config.yml');
     }
 
     /**
