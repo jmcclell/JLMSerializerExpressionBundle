@@ -102,7 +102,7 @@ use Symfony\Component\HttpFoundation\Response;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializationContext;
 
-class Controller extends Controller
+class UserController extends Controller
 {
     public function getUsers()
     {
