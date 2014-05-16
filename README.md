@@ -16,7 +16,6 @@ This bundle registers the necessary services in the DI container including a pre
 This bundle can be installed via Composer by adding the following to your ```composer.json``` file:
 
 ```json
-
 "require": {
     # ..
     "jlm/serializer-expression-bundle": "dev-master"
