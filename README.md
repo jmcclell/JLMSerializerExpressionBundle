@@ -126,7 +126,7 @@ class Controller extends Controller
 
 # FOSRestBundle Integration
 
-If you are using FOSRestBundle in order to more easily create format-agnostic controllers (and you should!) then the serialization process is *far* easier. The only thing you have to do is change a bit of configuration for `FOSRestBundle` so that it uses the `ViewHandler` provided by this bundle, which will automatically add the new `ExpressionBasedExclusionStrategy` to the built-in `SerializationContext` used by `FOSRestBundle`.
+If you are using [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle) in order to more easily create format-agnostic controllers (and you should!) then the serialization process is *far* easier. The only thing you have to do is change a bit of configuration for `FOSRestBundle` so that it uses the `ViewHandler` provided by this bundle, which will automatically add the new `ExpressionBasedExclusionStrategy` to the built-in `SerializationContext` used by `FOSRestBundle`.
 
 ```yaml
 fos_rest:
