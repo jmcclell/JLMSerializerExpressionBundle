@@ -7,8 +7,7 @@
     <parameters>
         <parameter key="jlm_serializer_expression.metadata.annotation_driver.class">JLM\SerializerExpression\Metadata\Driver\AnnotationDriver</parameter>
         <parameter key="jlm_serializer_expression.metadata.cache.file_cache.class">Metadata\Cache\FileCache</parameter>
-        <parameter key="jlm_serializer_expression.metadata.metadata_factory.class">Metadata\MetadataFactory
-        </parameter>
+        <parameter key="jlm_serializer_expression.metadata.metadata_factory.class">Metadata\MetadataFactory</parameter>
         <parameter key="jlm_serializer_expression.serializer.class">JMS\Serializer\Serializer</parameter>
         <parameter key="jlm_serializer_expression.expression_based_exclusion_strategy.class">JLM\SerializerExpression\Exclusion\ExpressionBasedExclusionStrategy</parameter>
         <parameter key="jlm_serializer_expression.expression_language.class">JLM\SerializerExpressionBundle\ExpressionLanguage\ExpressionLanguage</parameter>
