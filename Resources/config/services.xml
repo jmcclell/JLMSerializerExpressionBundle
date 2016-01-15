@@ -54,6 +54,7 @@
             class="%jlm_serializer_expression.expression_based_exclusion_strategy.class%">
             <argument type="service" id="jlm_serializer_expression.metadata.metadata_factory" />
             <argument type="service" id="jlm_serializer_expression.expression_language" />
+            <tag name="jms_serializer.event_subscriber"/>
         </service>
     </services>
 </container>

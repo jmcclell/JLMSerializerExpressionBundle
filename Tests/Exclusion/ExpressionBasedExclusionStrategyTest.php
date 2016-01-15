@@ -2,8 +2,10 @@
 
 namespace JLM\SerializerExpressionBundle\Tests\Exclusion;
 
+use JMS\Serializer\EventDispatcher\EventDispatcher;
+use JMS\Serializer\SerializationContext;
+use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use JLM\SerializerExpressionBundle\Tests\Fixtures\Model\User;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class ExpressionBasedExclusionStrategyTest extends WebTestCase
@@ -31,19 +33,27 @@ class ExpressionBasedExclusionStrategyTest extends WebTestCase
     /**
      * @dataProvider securitySerializationDataProvider
      */
-    public function testSecuritySerialization($roles, $expectedFields)
+    public function testSecuritySerialization($roles, $policy, $expectedFields)
     {
         $this->login($roles);
         $client = $this->client;
         $container = $client->getContainer();
         $strategy = $container->get('jlm_serializer_expression.expression_based_exclusion_strategy');
-        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        $context = \JMS\Serializer\SerializationContext::create();
+        $serializer = SerializerBuilder::create()
+            ->configureListeners(function(EventDispatcher $dispatcher) use ($strategy) {
+               $dispatcher->addSubscriber($strategy);
+            })
+            ->build();
+        $context = SerializationContext::create();
         $context->addExclusionStrategy($strategy);
 
-        $data = json_decode($serializer->serialize(new User, 'json', $context), true);
+        $class = "JLM\\SerializerExpressionBundle\\Tests\\Fixtures\\Model\\";
+        $class = $class . $policy . 'ExclusionPolicy';
+        $data = json_decode($serializer->serialize(new $class, 'json', $context), true);
         $fields = array_keys($data);
-        $this->assertEquals(count($expectedFields), count($fields));
+        sort($fields);
+        sort($expectedFields);
+        $this->assertEquals($expectedFields, $fields);
 
         foreach ($fields as $field) {
             $this->assertTrue(in_array($field, $expectedFields));
@@ -53,9 +63,12 @@ class ExpressionBasedExclusionStrategyTest extends WebTestCase
     public function securitySerializationDataProvider()
     {
         return array(
-            array('ROLE_ANONYMOUS', array('first_name', 'last_name', 'occupation')),
-            array('ROLE_USER', array('first_name', 'last_name', 'occupation', 'address')),
-            array(array('ROLE_USER', 'ROLE_ADMIN'), array('first_name', 'last_name', 'occupation', 'address', 'phone'))
+            array('ROLE_ANONYMOUS', 'None', array('b', 'd', 'e', 'f', 'g', 'h', 'i', 'bb', 'dd', 'ee', 'ff', 'gg', 'hh', 'ii')),
+            array('ROLE_USER', 'None', array('b', 'c', 'e', 'f', 'g', 'h', 'i', 'bb', 'cc', 'ee', 'ff', 'gg', 'hh', 'ii')),
+            array(array('ROLE_USER', 'ROLE_ADMIN'), 'None',  array('a', 'c', 'e', 'f', 'g', 'h', 'i', 'aa', 'cc', 'ee', 'ff', 'gg', 'hh', 'ii')),
+            array('ROLE_ANONYMOUS', 'All', array('a', 'c', 'aa', 'cc', 'ee', 'ff', 'gg', 'hh', 'ii')),
+            array('ROLE_USER', 'All', array('a', 'd', 'aa', 'dd', 'ee', 'ff', 'gg', 'hh', 'ii')),
+            array(array('ROLE_ADMIN', 'ROLE_USER'), 'All',  array('b', 'd', 'bb', 'dd', 'ee', 'ff', 'gg', 'hh', 'ii'))
         );
     }
 
@@ -64,6 +77,6 @@ class ExpressionBasedExclusionStrategyTest extends WebTestCase
         $roles = (array)$roles;
         $firewall = 'secured_area';
         $token = new UsernamePasswordToken('user', null, $firewall, $roles);
-        $this->client->getContainer()->get('security.context')->setToken($token);
+        $this->client->getContainer()->get('security.token_storage')->setToken($token);
     }
 }

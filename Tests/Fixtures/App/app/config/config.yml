@@ -13,6 +13,7 @@ services:
         
 security:
   role_hierarchy:
+    ROLE_USER: []
     ROLE_ADMIN: [ROLE_USER]
   firewalls:
     secured_area:
@@ -24,8 +25,8 @@ security:
     memory_provider:
       memory:
         users:
-          user: { password: password, roles: 'ROLE_USER' }
-          admin: { password: password, roles: 'ROLE_ADMIN' }
+          user: { password: 'password', roles: 'ROLE_USER' }
+          admin: { password: 'password', roles: ['ROLE_ADMIN', 'ROLE_USER'] }
   encoders:
         Symfony\Component\Security\Core\User\User: plaintext
 fos_rest:

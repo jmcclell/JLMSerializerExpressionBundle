@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface;
 
 /**
+ * Base expression language for Serializer
  */
 class ExpressionLanguage extends BaseExpressionLanguage
 {
@@ -39,9 +40,9 @@ class ExpressionLanguage extends BaseExpressionLanguage
         });
 
         $this->register('secure', function ($arg) {
-            return sprintf('$this->get(\'security.context\')->isGranted(%s)', $arg);
+            return sprintf('$this->get(\'security.authorization_checker\')->isGranted(%s)', $arg);
         }, function (array $variables, $value) use ($container) {   
-            return $container->get('security.context')->isGranted(new Expression($value));
+            return $container->get('security.authorization_checker')->isGranted(new Expression($value));
         });
     }
 }

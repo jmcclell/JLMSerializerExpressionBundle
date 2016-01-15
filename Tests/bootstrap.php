@@ -1,13 +1,15 @@
 <?php
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Composer\Autoload\ClassLoader;
 
 if (file_exists(__DIR__.'/../vendor/autoload.php')) {
-    $loader = require_once __DIR__.'/../vendor/autoload.php';
-    
-    AnnotationRegistry::registerLoader('class_exists');
+    /**
+     * @var ClassLoader $loader
+     */
+    $loader = require __DIR__.'/../vendor/autoload.php';
 
-    // add our test bundle
+    AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
     $loader->add('TestBundle', __DIR__ . '/Fixtures/App/src/');
 
     return $loader;
